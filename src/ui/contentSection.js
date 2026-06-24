@@ -22,27 +22,27 @@ export function createContentSection() {
         <p class="projects__desc">Originally a paper-trading platform &mdash; $100,000 in virtual cash, real-time stock and crypto prices, P&amp;L tracking and leaderboards. Now being rebuilt as a financial-literacy teaching tool: the same risk-free trading mechanics, reframed around guided lessons so people can learn how markets actually work before risking real money.</p>
       </li>
       <li>
-        <span class="projects__title">MACRO MONITOR</span>
+        <a class="projects__title" href="https://github.com/mstyli04/macro-monitor" target="_blank" rel="noopener noreferrer">MACRO MONITOR</a>
         <p class="projects__desc">A live US macro dashboard with a recession-probability nowcast in the tradition of Estrella &amp; Mishkin (1998) &mdash; a probit model with walk-forward out-of-sample validation, refreshed daily from FRED.</p>
       </li>
       <li>
-        <span class="projects__title">GAME THEORY SIMULATOR</span>
+        <a class="projects__title" href="https://github.com/mstyli04/game-theory-simulator" target="_blank" rel="noopener noreferrer">GAME THEORY SIMULATOR</a>
         <p class="projects__desc">An interactive workbook for two-player normal-form games. Build a payoff matrix and watch it get solved live: iterated elimination of dominated strategies, all Nash equilibria, best-response curves, and the Pareto frontier.</p>
       </li>
       <li>
-        <span class="projects__title">CHROMATIC</span>
+        <a class="projects__title" href="https://github.com/mstyli04/graph-coloring-game" target="_blank" rel="noopener noreferrer">CHROMATIC</a>
         <p class="projects__desc">A browser puzzle game built on real graph theory &mdash; color nodes so no two neighbors share a color across 15 levels, from small graphs up to the Petersen graph and the icosahedron, exploring the Four Color Theorem along the way.</p>
       </li>
       <li>
-        <span class="projects__title">FX OPTIONS DASHBOARD</span>
+        <a class="projects__title" href="https://github.com/mstyli04/fx-options-dashboard" target="_blank" rel="noopener noreferrer">FX OPTIONS DASHBOARD</a>
         <p class="projects__desc">A pricing and risk dashboard for European FX options using Garman&ndash;Kohlhagen, with 3D Greek surfaces, Monte Carlo simulation, implied-volatility solving, and a backtested delta-hedging strategy on real GBPUSD history.</p>
       </li>
       <li>
-        <span class="projects__title">JOB TRACKER</span>
+        <a class="projects__title" href="https://github.com/mstyli04/job-tracker" target="_blank" rel="noopener noreferrer">JOB TRACKER</a>
         <p class="projects__desc">A lightweight Flask app for tracking job applications end-to-end, from Applied through Offer or Rejected, built to stay organized during a job search.</p>
       </li>
       <li>
-        <span class="projects__title">POTTERY REVEAL</span>
+        <a class="projects__title" href="https://github.com/mstyli04/pottery-reveal" target="_blank" rel="noopener noreferrer">POTTERY REVEAL</a>
         <p class="projects__desc">A scroll-driven 3D animation where raw clay morphs into a finished vessel, is engulfed in flame, and emerges with a glossy porcelain finish &mdash; a personal gift project built in Three.js.</p>
       </li>
     </ul>
