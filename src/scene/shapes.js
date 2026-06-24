@@ -9,8 +9,8 @@ export function ring(count, { radius = 2.4, tubeRadius = 0.5 } = {}) {
     const tubeAngle = Math.random() * Math.PI * 2;
     const tubeOffset = Math.random() * tubeRadius;
     const x = Math.cos(angle) * radius + Math.cos(tubeAngle) * tubeOffset;
-    const y = Math.sin(tubeAngle) * tubeOffset;
-    const z = Math.sin(angle) * radius;
+    const y = Math.sin(angle) * radius;
+    const z = Math.sin(tubeAngle) * tubeOffset;
     positions[i * 3] = x;
     positions[i * 3 + 1] = y;
     positions[i * 3 + 2] = z;
