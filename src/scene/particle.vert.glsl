@@ -14,6 +14,8 @@ attribute float phase;
 varying float vAlpha;
 
 void main() {
+  // Clamp below 2.0, not at it: floor(2.0) would select a nonexistent third
+  // segment, freezing the morph instead of resolving to fully positionC.
   float seg = clamp(uProgress, 0.0, 1.9999);
   float segIndex = floor(seg);
   float segFract = seg - segIndex;
