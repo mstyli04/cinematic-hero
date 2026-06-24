@@ -41,3 +41,9 @@ function animate() {
 }
 
 requestAnimationFrame(animate);
+
+if (import.meta.hot) {
+  import.meta.hot.dispose(() => {
+    particleField.dispose();
+  });
+}
