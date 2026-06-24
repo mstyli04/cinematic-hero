@@ -5,6 +5,7 @@ import { ParticleField } from './scene/ParticleField.js';
 import { createRenderer } from './scene/renderer.js';
 import { createScrollTimeline } from './scroll/scrollTimeline.js';
 import { createNavbar, computeFps } from './ui/navbar.js';
+import { createContentSection } from './ui/contentSection.js';
 
 const tier = getDeviceTier({
   width: window.innerWidth,
@@ -27,6 +28,7 @@ createScrollTimeline({
     scrollProgress = progress / 2;
   },
 });
+createContentSection();
 
 const clock = new THREE.Clock();
 
