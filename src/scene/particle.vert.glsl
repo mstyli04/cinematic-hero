@@ -33,7 +33,7 @@ void main() {
   );
 
   vec4 mvPosition = modelViewMatrix * vec4(rotated, 1.0);
-  gl_PointSize = (2.0 + 1.5 * sin(uTime * 1.5 + phase)) * (300.0 / -mvPosition.z);
+  gl_PointSize = (2.0 + 1.5 * sin(uTime * 1.5 + phase)) * (10.0 / -mvPosition.z);
   vAlpha = 0.6 + 0.4 * sin(uTime * 1.5 + phase);
   gl_Position = projectionMatrix * mvPosition;
 }
