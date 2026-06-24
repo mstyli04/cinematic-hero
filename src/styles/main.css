@@ -75,3 +75,13 @@ html, body {
   padding: 12px 0;
   border-top: 1px solid rgba(232, 241, 255, 0.15);
 }
+
+.content-section__list a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.content-section__list a:hover {
+  color: #bfe6ff;
+}
