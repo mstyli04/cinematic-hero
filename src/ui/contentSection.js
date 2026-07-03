@@ -7,6 +7,7 @@ const PROJECTS = [
   {
     title: 'PAPER ALPHA',
     href: 'https://github.com/mstyli04/paper-alpha',
+    live: 'https://paper-alpha-navy.vercel.app/',
     tags: ['Next.js', 'TypeScript', 'Prisma'],
     desc: 'An educational platform for learning how financial markets and investing work — practice trading stocks and crypto with $100,000 in virtual cash, live market data, and guided lessons, so you can build real investing skills before risking real money.',
   },
@@ -42,14 +43,20 @@ const SKILLS = [
   'Claude Code',
 ];
 
-function projectRow({ title, href, tags, desc }, index) {
+function projectRow({ title, href, tags, desc, live }, index) {
   const num = String(index + 1).padStart(2, '0');
+  const liveLink = live
+    ? `<a class="project-row__live" href="${live}" target="_blank" rel="noopener noreferrer">LIVE ↗</a>`
+    : '';
   return `
     <li class="project-row">
-      <a class="project-row__link" href="${href}" target="_blank" rel="noopener noreferrer">
-        <span class="project-row__num">${num}</span>
-        <span class="project-row__title">${title}</span>
-      </a>
+      <div class="project-row__head">
+        <a class="project-row__link" href="${href}" target="_blank" rel="noopener noreferrer">
+          <span class="project-row__num">${num}</span>
+          <span class="project-row__title">${title}</span>
+        </a>
+        ${liveLink}
+      </div>
       <ul class="pill-list project-row__tags">${tags.map((t) => `<li>${t}</li>`).join('')}</ul>
       <p class="project-row__desc">${desc}</p>
     </li>
