@@ -210,3 +210,12 @@ html, body {
   inset: 0;
   background: radial-gradient(ellipse at center, transparent 55%, rgb(0 0 0 / 0.45) 100%);
 }
+
+@media (max-width: 640px) {
+  .navbar { padding: 16px 20px; }
+  .navbar__links a { margin-left: 20px; }
+  .stats-hud { display: none; }
+  .content-section { padding: 0 20px; }
+  .project-row__link { flex-direction: column; gap: 4px; }
+  .project-row:hover .project-row__title { transform: none; }
+}

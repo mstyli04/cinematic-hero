@@ -8,6 +8,8 @@ import { createNavbar, computeFps } from './ui/navbar.js';
 import { createContentSection } from './ui/contentSection.js';
 import { initCursorParallax, initMagneticLinks } from './ui/cursor.js';
 
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 const tier = getDeviceTier({
   width: window.innerWidth,
   cores: navigator.hardwareConcurrency || 4,
@@ -22,23 +24,27 @@ scene.add(particleField.mesh);
 const navbar = createNavbar({ particleCount: tier.particleCount });
 
 let scrollProgress = 0;
-createScrollTimeline({
-  heroEl: document.getElementById('hero'),
-  onHeroProgress: (progress) => {
-    particleField.setProgress(progress);
-    document.documentElement.style.setProperty('--scene-tint', particleField.getTintCss());
-    scrollProgress = progress / 3;
-  },
-});
-createContentSection();
-initCursorParallax(particleField.mesh);
-initMagneticLinks('.navbar__links a');
+if (!reducedMotion) {
+  createScrollTimeline({
+    heroEl: document.getElementById('hero'),
+    onHeroProgress: (progress) => {
+      particleField.setProgress(progress);
+      document.documentElement.style.setProperty('--scene-tint', particleField.getTintCss());
+      scrollProgress = progress / 3;
+    },
+  });
+}
+createContentSection({ animate: !reducedMotion });
+if (!reducedMotion) {
+  initCursorParallax(particleField.mesh);
+  initMagneticLinks('.navbar__links a');
+}
 
 const clock = new THREE.Clock();
 
 function animate() {
   const delta = clock.getDelta();
-  particleField.update(delta);
+  if (!reducedMotion) particleField.update(delta);
   navbar.updateStats({ fps: computeFps(delta), scrollProgress });
   composer.render();
   requestAnimationFrame(animate);
