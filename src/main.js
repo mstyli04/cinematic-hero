@@ -6,6 +6,7 @@ import { createRenderer } from './scene/renderer.js';
 import { createScrollTimeline } from './scroll/scrollTimeline.js';
 import { createNavbar, computeFps } from './ui/navbar.js';
 import { createContentSection } from './ui/contentSection.js';
+import { initCursorParallax, initMagneticLinks } from './ui/cursor.js';
 
 const tier = getDeviceTier({
   width: window.innerWidth,
@@ -30,6 +31,8 @@ createScrollTimeline({
   },
 });
 createContentSection();
+initCursorParallax(particleField.mesh);
+initMagneticLinks('.navbar__links a');
 
 const clock = new THREE.Clock();
 
