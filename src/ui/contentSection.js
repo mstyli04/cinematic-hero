@@ -71,8 +71,6 @@ export function createContentSection({ animate = true } = {}) {
     <h2 class="content-section__heading">MICHAEL STYLIANOU</h2>
     <ul class="content-section__list">
       <li><a href="https://paper-alpha-navy.vercel.app/" target="_blank" rel="noopener noreferrer">WEBSITES</a></li>
-      <li>INSTALLATIONS</li>
-      <li>XR</li>
       <li>GAMES</li>
     </ul>
     <h3 class="about__heading">ABOUT</h3>
