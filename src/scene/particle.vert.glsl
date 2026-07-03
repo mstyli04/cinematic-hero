@@ -1,28 +1,30 @@
-// uProgress in [0, 2]: 0..1 morphs positionA->positionB, 1..2 morphs
-// positionB->positionC. Set by ParticleField.setProgress(), which is in
-// turn driven by scrollTimeline.js's heroProgressToShaderProgress(). To add
-// a 4th scene later: add positionD, extend the range to [0,3], and add one
-// more mix() stage below following the same step()-based pattern.
+// uProgress in [0, 3]: 0..1 morphs positionA->positionB, 1..2 morphs
+// positionB->positionC, 2..3 morphs positionC->positionD. Set by
+// ParticleField.setProgress(), driven by scrollTimeline.js's
+// heroProgressToShaderProgress(). To add a 5th scene: add positionE,
+// extend the range to [0,4], and add one more step() stage below.
 uniform float uProgress;
 uniform float uTime;
 
 attribute vec3 positionA;
 attribute vec3 positionB;
 attribute vec3 positionC;
+attribute vec3 positionD;
 attribute float phase;
 
 varying float vAlpha;
 
 void main() {
-  // Clamp below 2.0, not at it: floor(2.0) would select a nonexistent third
-  // segment, freezing the morph instead of resolving to fully positionC.
-  float seg = clamp(uProgress, 0.0, 1.9999);
+  // Clamp below 3.0, not at it: floor(3.0) would select a nonexistent
+  // fourth segment, freezing the morph instead of resolving to positionD.
+  float seg = clamp(uProgress, 0.0, 2.9999);
   float segIndex = floor(seg);
   float segFract = seg - segIndex;
-  float isSecondSegment = step(0.5, segIndex);
+  float s1 = step(0.5, segIndex);
+  float s2 = step(1.5, segIndex);
 
-  vec3 fromPos = mix(positionA, positionB, isSecondSegment);
-  vec3 toPos = mix(positionB, positionC, isSecondSegment);
+  vec3 fromPos = mix(positionA, mix(positionB, positionC, s2), s1);
+  vec3 toPos = mix(positionB, mix(positionC, positionD, s2), s1);
   vec3 morphed = mix(fromPos, toPos, segFract);
 
   float angle = uTime * 0.05;

@@ -25,7 +25,7 @@ createScrollTimeline({
   heroEl: document.getElementById('hero'),
   onHeroProgress: (progress) => {
     particleField.setProgress(progress);
-    scrollProgress = progress / 2;
+    scrollProgress = progress / 3;
   },
 });
 createContentSection();

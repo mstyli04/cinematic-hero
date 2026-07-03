@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { ring, cubeOutline, starfield } from './shapes.js';
+import { ring, cubeOutline, starfield, initials } from './shapes.js';
 import vertexShader from './particle.vert.glsl?raw';
 import fragmentShader from './particle.frag.glsl?raw';
 
@@ -9,7 +9,8 @@ export class ParticleField {
 
     const positionA = ring(count);
     const positionB = cubeOutline(count);
-    const positionC = starfield(count);
+    const positionC = initials(count);
+    const positionD = starfield(count);
 
     const phase = new Float32Array(count);
     for (let i = 0; i < count; i += 1) phase[i] = Math.random() * Math.PI * 2;
@@ -21,6 +22,7 @@ export class ParticleField {
     this.geometry.setAttribute('positionA', new THREE.BufferAttribute(positionA, 3));
     this.geometry.setAttribute('positionB', new THREE.BufferAttribute(positionB, 3));
     this.geometry.setAttribute('positionC', new THREE.BufferAttribute(positionC, 3));
+    this.geometry.setAttribute('positionD', new THREE.BufferAttribute(positionD, 3));
     this.geometry.setAttribute('phase', new THREE.BufferAttribute(phase, 1));
 
     this.material = new THREE.ShaderMaterial({
