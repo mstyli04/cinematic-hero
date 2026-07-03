@@ -3,6 +3,15 @@ import { ring, cubeOutline, starfield, initials } from './shapes.js';
 import vertexShader from './particle.vert.glsl?raw';
 import fragmentShader from './particle.frag.glsl?raw';
 
+// One stop per shape: ring, cube, monogram, starfield. setProgress() lerps
+// between adjacent stops so the color always matches the current morph.
+const PALETTE = [
+  new THREE.Color(0xbfe6ff),
+  new THREE.Color(0xb39dff),
+  new THREE.Color(0xffb86b),
+  new THREE.Color(0x7f9cff),
+];
+
 export class ParticleField {
   constructor({ count, colorHex = 0xbfe6ff } = {}) {
     this.count = count;
@@ -43,6 +52,17 @@ export class ParticleField {
 
   setProgress(progress) {
     this.material.uniforms.uProgress.value = progress;
+    const t = Math.min(Math.max(progress, 0), 2.9999);
+    const i = Math.floor(t);
+    this.material.uniforms.uColor.value.copy(PALETTE[i]).lerp(PALETTE[i + 1], t - i);
+  }
+
+  getTintCss(strength = 0.22) {
+    const c = this.material.uniforms.uColor.value;
+    const r = Math.round(c.r * 255 * strength);
+    const g = Math.round(c.g * 255 * strength);
+    const b = Math.round(c.b * 255 * strength);
+    return `rgb(${r} ${g} ${b})`;
   }
 
   update(deltaSeconds) {

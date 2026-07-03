@@ -25,6 +25,7 @@ createScrollTimeline({
   heroEl: document.getElementById('hero'),
   onHeroProgress: (progress) => {
     particleField.setProgress(progress);
+    document.documentElement.style.setProperty('--scene-tint', particleField.getTintCss());
     scrollProgress = progress / 3;
   },
 });
