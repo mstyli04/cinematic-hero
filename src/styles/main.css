@@ -93,6 +93,49 @@ html, body {
   color: #6f93b8;
 }
 
+.about__heading {
+  margin-top: 64px;
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  color: #6f93b8;
+}
+
+.about__bio {
+  max-width: 640px;
+  margin-top: 16px;
+  font-size: 16px;
+  line-height: 1.7;
+  color: rgba(232, 241, 255, 0.75);
+}
+
+.about__skills {
+  max-width: 640px;
+  margin-top: 20px;
+}
+
+/* content-section is a stretch flex column; without align-self the anchor
+   spans full width and the whole row becomes clickable. */
+.about__cv-button {
+  align-self: flex-start;
+  display: inline-block;
+  margin-top: 24px;
+  padding: 12px 28px;
+  border: 1px solid rgba(232, 241, 255, 0.4);
+  border-radius: 999px;
+  color: #e8f1ff;
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  text-decoration: none;
+  transition: border-color 0.25s ease, color 0.25s ease, background 0.25s ease;
+}
+
+.about__cv-button:hover,
+.about__cv-button:focus-visible {
+  border-color: #bfe6ff;
+  color: #bfe6ff;
+  background: rgba(191, 230, 255, 0.06);
+}
+
 .projects__list {
   list-style: none;
   margin-top: 16px;
@@ -156,14 +199,14 @@ html, body {
   transform: scaleX(1);
 }
 
-.project-row__tags {
+.pill-list {
   list-style: none;
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
-  margin-top: 10px;
 }
 
-.project-row__tags li {
+.pill-list li {
   font-family: 'SF Mono', 'Consolas', monospace;
   font-size: 11px;
   letter-spacing: 0.08em;
@@ -172,6 +215,8 @@ html, body {
   border-radius: 999px;
   padding: 3px 10px;
 }
+
+.project-row__tags { margin-top: 10px; }
 
 .project-row__desc {
   max-width: 640px;

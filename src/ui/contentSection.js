@@ -36,6 +36,12 @@ const PROJECTS = [
   },
 ];
 
+const SKILLS = [
+  'Python', 'pandas', 'NumPy/SciPy', 'statsmodels', 'R', 'MATLAB', 'Excel',
+  'SQL', 'JavaScript/TypeScript', 'Next.js/React', 'Flask', 'Three.js',
+  'Claude Code',
+];
+
 function projectRow({ title, href, tags, desc }, index) {
   const num = String(index + 1).padStart(2, '0');
   return `
@@ -44,7 +50,7 @@ function projectRow({ title, href, tags, desc }, index) {
         <span class="project-row__num">${num}</span>
         <span class="project-row__title">${title}</span>
       </a>
-      <ul class="project-row__tags">${tags.map((t) => `<li>${t}</li>`).join('')}</ul>
+      <ul class="pill-list project-row__tags">${tags.map((t) => `<li>${t}</li>`).join('')}</ul>
       <p class="project-row__desc">${desc}</p>
     </li>
   `;
@@ -62,6 +68,10 @@ export function createContentSection({ animate = true } = {}) {
       <li>XR</li>
       <li>GAMES</li>
     </ul>
+    <h3 class="about__heading">ABOUT</h3>
+    <p class="about__bio">Mathematics & Economics undergraduate at the University of Liverpool, building quantitative tools for real markets — from options pricing and delta-hedging backtests to a live recession nowcast. Interested in data-driven finance and AI; everything below was designed, built, and shipped by me.</p>
+    <ul class="pill-list about__skills">${SKILLS.map((s) => `<li>${s}</li>`).join('')}</ul>
+    <a class="about__cv-button" href="/cv.pdf" download="Michael_Stylianou_CV.pdf">DOWNLOAD CV</a>
     <h3 class="projects__heading">PROJECTS</h3>
     <ul class="projects__list">${PROJECTS.map(projectRow).join('')}</ul>
   `;
@@ -79,6 +89,18 @@ export function createContentSection({ animate = true } = {}) {
       y: 0,
       ease: 'power2.out',
       scrollTrigger: { trigger: section, start: 'top 85%', end: 'top 40%', scrub: 1 },
+    },
+  );
+
+  gsap.from(
+    section.querySelectorAll('.about__heading, .about__bio, .about__skills, .about__cv-button'),
+    {
+      autoAlpha: 0,
+      y: 30,
+      duration: 0.7,
+      stagger: 0.1,
+      ease: 'power2.out',
+      scrollTrigger: { trigger: section.querySelector('.about__heading'), start: 'top 85%' },
     },
   );
 
