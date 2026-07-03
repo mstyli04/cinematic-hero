@@ -7,6 +7,7 @@ import { createScrollTimeline } from './scroll/scrollTimeline.js';
 import { createNavbar, computeFps } from './ui/navbar.js';
 import { createContentSection } from './ui/contentSection.js';
 import { createFooter } from './ui/footer.js';
+import { createHeroTitle } from './ui/heroTitle.js';
 import { initCursorParallax, initMagneticLinks } from './ui/cursor.js';
 import { debounce } from './scene/debounce.js';
 
@@ -27,6 +28,7 @@ const navbar = createNavbar({ particleCount: tier.particleCount });
 if (reducedMotion) {
   document.querySelector('.stats-hud').style.display = 'none';
 }
+const heroTitle = createHeroTitle();
 
 let scrollProgress = 0;
 if (!reducedMotion) {
@@ -34,6 +36,7 @@ if (!reducedMotion) {
     heroEl: document.getElementById('hero'),
     onHeroProgress: (progress) => {
       particleField.setProgress(progress);
+      heroTitle.setProgress(progress);
       document.documentElement.style.setProperty('--scene-tint', particleField.getTintCss());
       scrollProgress = progress / 3;
     },

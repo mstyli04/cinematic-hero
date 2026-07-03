@@ -15,6 +15,36 @@ html, body {
   display: block;
 }
 
+.hero-title {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
+  pointer-events: none;
+}
+
+/* Column-flex items with align-items:center size to max-content, so
+   without max-width the h1 overflows instead of wrapping on phones. */
+.hero-title h1 {
+  max-width: 100%;
+  font-size: clamp(40px, 8vw, 120px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.hero-title p {
+  max-width: 100%;
+  margin-top: 12px;
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  color: #6f93b8;
+}
+
 .navbar {
   position: fixed;
   top: 0; left: 0; width: 100%;
@@ -330,6 +360,8 @@ html, body {
 
 @media (max-width: 640px) {
   .navbar { padding: 16px 20px; }
+  .hero-title h1 { font-size: 34px; }
+  .hero-title p { font-size: 11px; }
   .navbar__links a { margin-left: 20px; }
   .stats-hud { display: none; }
   .content-section { padding: 0 20px; }
