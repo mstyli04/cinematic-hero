@@ -9,7 +9,7 @@ export function createNavbar({ particleCount }) {
   nav.innerHTML = `
     <span class="navbar__logo">STYLI</span>
     <div class="navbar__links">
-      <a href="#work">WORK</a>
+      <a href="#content">WORK</a>
       <a href="mailto:michael.stylianou7@gmail.com">CONTACT</a>
     </div>
   `;

@@ -143,7 +143,16 @@ html, body {
   transform: translateX(8px);
 }
 
+.project-row:focus-within .project-row__title {
+  color: #bfe6ff;
+  transform: translateX(8px);
+}
+
 .project-row:hover .project-row__title::after {
+  transform: scaleX(1);
+}
+
+.project-row:focus-within .project-row__title::after {
   transform: scaleX(1);
 }
 
@@ -174,6 +183,10 @@ html, body {
 }
 
 .project-row:hover .project-row__desc {
+  color: rgba(232, 241, 255, 0.85);
+}
+
+.project-row:focus-within .project-row__desc {
   color: rgba(232, 241, 255, 0.85);
 }
 
