@@ -3,7 +3,6 @@ export function createHeroTitle() {
   el.className = 'hero-title';
   el.innerHTML = `
     <h1>MICHAEL STYLIANOU</h1>
-    <p>QUANTITATIVE TOOLS FOR REAL MARKETS</p>
   `;
   document.getElementById('hero').appendChild(el);
 

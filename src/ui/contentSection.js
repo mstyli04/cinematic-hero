@@ -76,7 +76,7 @@ export function createContentSection({ animate = true } = {}) {
       <li>GAMES</li>
     </ul>
     <h3 class="about__heading">ABOUT</h3>
-    <p class="about__bio">Mathematics & Economics undergraduate at the University of Liverpool, building quantitative tools for real markets — from options pricing and delta-hedging backtests to a live recession nowcast. Interested in data-driven finance and AI; everything below was designed, built, and shipped by me.</p>
+    <p class="about__bio">Mathematics & Economics graduate from the University of Liverpool, building quantitative tools for real markets — from options pricing and delta-hedging backtests to a live recession nowcast. Interested in data-driven finance and AI; everything below was designed, built, and shipped by me.</p>
     <ul class="pill-list about__skills">${SKILLS.map((s) => `<li>${s}</li>`).join('')}</ul>
     <a class="about__cv-button" href="/cv.pdf" download="Michael_Stylianou_CV.pdf">DOWNLOAD CV</a>
     <h3 class="projects__heading">PROJECTS</h3>
