@@ -3,7 +3,54 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export function createContentSection() {
+const PROJECTS = [
+  {
+    title: 'PAPER ALPHA',
+    href: 'https://github.com/mstyli04/paper-alpha',
+    tags: ['Next.js', 'TypeScript', 'Prisma'],
+    desc: 'An educational platform for learning how financial markets and investing work — practice trading stocks and crypto with $100,000 in virtual cash, live market data, and guided lessons, so you can build real investing skills before risking real money.',
+  },
+  {
+    title: 'MACRO MONITOR',
+    href: 'https://github.com/mstyli04/macro-monitor',
+    tags: ['Python', 'Next.js', 'FRED API'],
+    desc: 'A live US macro dashboard with a recession-probability nowcast in the tradition of Estrella & Mishkin (1998) — a probit model with walk-forward out-of-sample validation, refreshed daily from FRED.',
+  },
+  {
+    title: 'GAME THEORY SIMULATOR',
+    href: 'https://github.com/mstyli04/game-theory-simulator',
+    tags: ['Vanilla JS', 'Zero dependencies'],
+    desc: 'An interactive workbook for two-player normal-form games. Build a payoff matrix and watch it get solved live: iterated elimination of dominated strategies, all Nash equilibria, best-response curves, and the Pareto frontier.',
+  },
+  {
+    title: 'FX OPTIONS DASHBOARD',
+    href: 'https://github.com/mstyli04/fx-options-dashboard',
+    tags: ['Flask', 'NumPy', 'SciPy'],
+    desc: 'A pricing and risk dashboard for European FX options using Garman–Kohlhagen, with 3D Greek surfaces, Monte Carlo simulation, implied-volatility solving, and a backtested delta-hedging strategy on real GBPUSD history.',
+  },
+  {
+    title: 'JOB TRACKER',
+    href: 'https://github.com/mstyli04/job-tracker',
+    tags: ['Flask', 'SQLite'],
+    desc: 'A lightweight Flask app for tracking job applications end-to-end, from Applied through Offer or Rejected, built to stay organized during a job search.',
+  },
+];
+
+function projectRow({ title, href, tags, desc }, index) {
+  const num = String(index + 1).padStart(2, '0');
+  return `
+    <li class="project-row">
+      <a class="project-row__link" href="${href}" target="_blank" rel="noopener noreferrer">
+        <span class="project-row__num">${num}</span>
+        <span class="project-row__title">${title}</span>
+      </a>
+      <ul class="project-row__tags">${tags.map((t) => `<li>${t}</li>`).join('')}</ul>
+      <p class="project-row__desc">${desc}</p>
+    </li>
+  `;
+}
+
+export function createContentSection({ animate = true } = {}) {
   const section = document.createElement('section');
   section.id = 'content';
   section.className = 'content-section';
@@ -16,49 +63,33 @@ export function createContentSection() {
       <li>GAMES</li>
     </ul>
     <h3 class="projects__heading">PROJECTS</h3>
-    <ul class="projects__list">
-      <li>
-        <a class="projects__title" href="https://github.com/mstyli04/paper-alpha" target="_blank" rel="noopener noreferrer">PAPER ALPHA</a>
-        <p class="projects__desc">Originally a paper-trading platform &mdash; $100,000 in virtual cash, real-time stock and crypto prices, P&amp;L tracking and leaderboards. Now being rebuilt as a financial-literacy teaching tool: the same risk-free trading mechanics, reframed around guided lessons so people can learn how markets actually work before risking real money.</p>
-      </li>
-      <li>
-        <a class="projects__title" href="https://github.com/mstyli04/macro-monitor" target="_blank" rel="noopener noreferrer">MACRO MONITOR</a>
-        <p class="projects__desc">A live US macro dashboard with a recession-probability nowcast in the tradition of Estrella &amp; Mishkin (1998) &mdash; a probit model with walk-forward out-of-sample validation, refreshed daily from FRED.</p>
-      </li>
-      <li>
-        <a class="projects__title" href="https://github.com/mstyli04/game-theory-simulator" target="_blank" rel="noopener noreferrer">GAME THEORY SIMULATOR</a>
-        <p class="projects__desc">An interactive workbook for two-player normal-form games. Build a payoff matrix and watch it get solved live: iterated elimination of dominated strategies, all Nash equilibria, best-response curves, and the Pareto frontier.</p>
-      </li>
-      <li>
-        <a class="projects__title" href="https://github.com/mstyli04/fx-options-dashboard" target="_blank" rel="noopener noreferrer">FX OPTIONS DASHBOARD</a>
-        <p class="projects__desc">A pricing and risk dashboard for European FX options using Garman&ndash;Kohlhagen, with 3D Greek surfaces, Monte Carlo simulation, implied-volatility solving, and a backtested delta-hedging strategy on real GBPUSD history.</p>
-      </li>
-      <li>
-        <a class="projects__title" href="https://github.com/mstyli04/job-tracker" target="_blank" rel="noopener noreferrer">JOB TRACKER</a>
-        <p class="projects__desc">A lightweight Flask app for tracking job applications end-to-end, from Applied through Offer or Rejected, built to stay organized during a job search.</p>
-      </li>
-    </ul>
+    <ul class="projects__list">${PROJECTS.map(projectRow).join('')}</ul>
   `;
   document.body.appendChild(section);
+
+  if (!animate) return section;
 
   // scrub: 1 (vs. scrub: true) adds ~1s of catch-up smoothing so the reveal
   // eases toward the scroll position instead of snapping rigidly to it.
   gsap.fromTo(
-    section,
+    section.querySelector('.content-section__heading'),
     { autoAlpha: 0, y: 60 },
     {
       autoAlpha: 1,
       y: 0,
-      duration: 1,
       ease: 'power2.out',
-      scrollTrigger: {
-        trigger: section,
-        start: 'top 85%',
-        end: 'top 40%',
-        scrub: 1,
-      },
+      scrollTrigger: { trigger: section, start: 'top 85%', end: 'top 40%', scrub: 1 },
     },
   );
+
+  gsap.from(section.querySelectorAll('.project-row'), {
+    autoAlpha: 0,
+    y: 40,
+    duration: 0.8,
+    stagger: 0.12,
+    ease: 'power2.out',
+    scrollTrigger: { trigger: section.querySelector('.projects__list'), start: 'top 80%' },
+  });
 
   return section;
 }
