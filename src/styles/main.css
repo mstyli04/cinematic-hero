@@ -269,6 +269,65 @@ html, body {
   background: radial-gradient(ellipse at center, transparent 55%, rgb(0 0 0 / 0.45) 100%);
 }
 
+/* Reduced-motion users get instant jumps; everyone else smooth-scrolls
+   the #contact anchor. */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+.footer {
+  position: relative;
+  z-index: 5;
+  background: #05060a;
+  display: flex;
+  flex-direction: column;
+  padding: 96px 40px 48px;
+}
+
+.footer__heading {
+  font-size: clamp(32px, 6vw, 72px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.footer__links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.footer__email {
+  font-size: clamp(18px, 3vw, 28px);
+  color: #bfe6ff;
+  text-decoration: none;
+}
+
+.footer__email:hover,
+.footer__email:focus-visible {
+  text-decoration: underline;
+}
+
+.footer__linkedin {
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  color: #e8f1ff;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.footer__linkedin:hover,
+.footer__linkedin:focus-visible {
+  color: #bfe6ff;
+}
+
+.footer__copyright {
+  margin-top: 48px;
+  font-size: 11px;
+  color: #6f93b8;
+}
+
 @media (max-width: 640px) {
   .navbar { padding: 16px 20px; }
   .navbar__links a { margin-left: 20px; }
@@ -276,4 +335,5 @@ html, body {
   .content-section { padding: 0 20px; }
   .project-row__link { flex-direction: column; gap: 4px; }
   .project-row:hover .project-row__title { transform: none; }
+  .footer { padding: 64px 20px 32px; }
 }

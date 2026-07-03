@@ -6,6 +6,7 @@ import { createRenderer } from './scene/renderer.js';
 import { createScrollTimeline } from './scroll/scrollTimeline.js';
 import { createNavbar, computeFps } from './ui/navbar.js';
 import { createContentSection } from './ui/contentSection.js';
+import { createFooter } from './ui/footer.js';
 import { initCursorParallax, initMagneticLinks } from './ui/cursor.js';
 import { debounce } from './scene/debounce.js';
 
@@ -39,9 +40,11 @@ if (!reducedMotion) {
   });
 }
 createContentSection({ animate: !reducedMotion });
+createFooter({ animate: !reducedMotion });
 if (!reducedMotion) {
   initCursorParallax(particleField.mesh);
   initMagneticLinks('.navbar__links a');
+  initMagneticLinks('.footer__links a');
 }
 
 const clock = new THREE.Clock();
