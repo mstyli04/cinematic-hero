@@ -32,12 +32,15 @@ void main() {
   vec3 morphed = mix(fromPos, toPos, segFract);
   vec3 assembled = mix(positionScatter, morphed, uAssembly);
 
-  // Expanding Gaussian band, radial from the click point; dead while
-  // rippleAge is negative (uRippleStart initializes to -1000).
+  // Expanding Gaussian band, radial from the click point; dead at init
+  // because amp underflows for the huge age uRippleStart=-1000 produces.
+  // d*d, not pow(d, 2.0): pow with a negative base is undefined in GLSL
+  // and NaN-blanks the whole field on some mobile drivers.
   float rippleAge = uTime - uRippleStart;
   float rippleRadius = rippleAge * 3.0;
   float rippleDist = distance(assembled, uRippleCenter);
-  float band = exp(-pow(rippleDist - rippleRadius, 2.0) * 4.0);
+  float rippleD = rippleDist - rippleRadius;
+  float band = exp(-rippleD * rippleD * 4.0);
   float amp = 0.6 * exp(-rippleAge * 1.5);
   vec3 rippleDir = normalize(assembled - uRippleCenter + vec3(0.0001));
   vec3 rippled = assembled + rippleDir * band * amp * step(0.0, rippleAge);
