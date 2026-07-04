@@ -41,6 +41,24 @@ html, body {
   display: inline-block;
 }
 
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 16px;
+  z-index: 30;
+  padding: 10px 16px;
+  background: #bfe6ff;
+  color: #05060a;
+  border-radius: 6px;
+  font-size: 13px;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 16px;
+}
+
 .navbar {
   position: fixed;
   top: 0; left: 0; width: 100%;
@@ -112,13 +130,7 @@ html, body {
   color: #bfe6ff;
 }
 
-.projects__heading {
-  margin-top: 64px;
-  font-size: 13px;
-  letter-spacing: 0.15em;
-  color: #6f93b8;
-}
-
+.projects__heading,
 .about__heading {
   margin-top: 64px;
   font-size: 13px;
@@ -143,7 +155,6 @@ html, body {
    spans full width and the whole row becomes clickable. */
 .about__cv-button {
   align-self: flex-start;
-  display: inline-block;
   margin-top: 24px;
   padding: 12px 28px;
   border: 1px solid rgba(232, 241, 255, 0.4);

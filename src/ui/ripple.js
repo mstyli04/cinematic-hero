@@ -10,6 +10,9 @@ export function initClickRipple({ heroEl, mesh, camera, particleField }) {
   const inverse = new THREE.Matrix4();
 
   heroEl.addEventListener('pointerdown', (e) => {
+    // Rippling the half-scattered cloud during the load-in assembly looks
+    // broken rather than playful; ignore clicks until it settles.
+    if (particleField.material.uniforms.uAssembly.value < 1) return;
     pointer.x = (e.clientX / window.innerWidth) * 2 - 1;
     pointer.y = -(e.clientY / window.innerHeight) * 2 + 1;
     raycaster.setFromCamera(pointer, camera);

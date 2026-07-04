@@ -68,6 +68,7 @@ function animate() {
   requestAnimationFrame(animate);
 }
 
+let assemblyTween = null;
 if (reducedMotion) {
   particleField.setAssembly(1);
   requestAnimationFrame(() => composer.render());
@@ -75,7 +76,7 @@ if (reducedMotion) {
 } else {
   requestAnimationFrame(animate);
   const assembly = { value: 0 };
-  gsap.to(assembly, {
+  assemblyTween = gsap.to(assembly, {
     value: 1,
     duration: 1.8,
     ease: 'power3.out',
@@ -85,6 +86,7 @@ if (reducedMotion) {
 
 if (import.meta.hot) {
   import.meta.hot.dispose(() => {
+    if (assemblyTween) assemblyTween.kill();
     particleField.dispose();
   });
 }
