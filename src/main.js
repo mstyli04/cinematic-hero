@@ -10,6 +10,7 @@ import { createContentSection } from './ui/contentSection.js';
 import { createFooter } from './ui/footer.js';
 import { createHeroTitle } from './ui/heroTitle.js';
 import { initCursorParallax, initMagneticLinks } from './ui/cursor.js';
+import { initClickRipple } from './ui/ripple.js';
 import { debounce } from './scene/debounce.js';
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -21,7 +22,7 @@ const tier = getDeviceTier({
 
 const canvas = document.getElementById('scene');
 const particleField = new ParticleField({ count: tier.particleCount });
-const { scene, composer } = createRenderer(canvas, { bloom: tier.bloom });
+const { scene, composer, camera } = createRenderer(canvas, { bloom: tier.bloom });
 
 scene.add(particleField.mesh);
 
@@ -49,6 +50,12 @@ if (!reducedMotion) {
   initCursorParallax(particleField.mesh);
   initMagneticLinks('.navbar__links a');
   initMagneticLinks('.footer__links a');
+  initClickRipple({
+    heroEl: document.getElementById('hero'),
+    mesh: particleField.mesh,
+    camera,
+    particleField,
+  });
 }
 
 const clock = new THREE.Clock();

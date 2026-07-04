@@ -42,6 +42,8 @@ export class ParticleField {
         uTime: { value: 0 },
         uColor: { value: new THREE.Color(colorHex) },
         uAssembly: { value: 0 },
+        uRippleCenter: { value: new THREE.Vector3() },
+        uRippleStart: { value: -1000.0 },
       },
       vertexShader,
       fragmentShader,
@@ -62,6 +64,11 @@ export class ParticleField {
 
   setAssembly(value) {
     this.material.uniforms.uAssembly.value = value;
+  }
+
+  triggerRipple(center) {
+    this.material.uniforms.uRippleCenter.value.copy(center);
+    this.material.uniforms.uRippleStart.value = this.material.uniforms.uTime.value;
   }
 
   getTintCss(strength = 0.22) {

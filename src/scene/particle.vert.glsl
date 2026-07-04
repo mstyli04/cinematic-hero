@@ -6,6 +6,8 @@
 uniform float uProgress;
 uniform float uTime;
 uniform float uAssembly;
+uniform vec3 uRippleCenter;
+uniform float uRippleStart;
 
 attribute vec3 positionA;
 attribute vec3 positionB;
@@ -30,13 +32,23 @@ void main() {
   vec3 morphed = mix(fromPos, toPos, segFract);
   vec3 assembled = mix(positionScatter, morphed, uAssembly);
 
+  // Expanding Gaussian band, radial from the click point; dead while
+  // rippleAge is negative (uRippleStart initializes to -1000).
+  float rippleAge = uTime - uRippleStart;
+  float rippleRadius = rippleAge * 3.0;
+  float rippleDist = distance(assembled, uRippleCenter);
+  float band = exp(-pow(rippleDist - rippleRadius, 2.0) * 4.0);
+  float amp = 0.6 * exp(-rippleAge * 1.5);
+  vec3 rippleDir = normalize(assembled - uRippleCenter + vec3(0.0001));
+  vec3 rippled = assembled + rippleDir * band * amp * step(0.0, rippleAge);
+
   float angle = uTime * 0.05;
   float c = cos(angle);
   float s = sin(angle);
   vec3 rotated = vec3(
-    assembled.x * c - assembled.z * s,
-    assembled.y,
-    assembled.x * s + assembled.z * c
+    rippled.x * c - rippled.z * s,
+    rippled.y,
+    rippled.x * s + rippled.z * c
   );
 
   vec4 mvPosition = modelViewMatrix * vec4(rotated, 1.0);
