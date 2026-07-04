@@ -5,11 +5,13 @@
 // extend the range to [0,4], and add one more step() stage below.
 uniform float uProgress;
 uniform float uTime;
+uniform float uAssembly;
 
 attribute vec3 positionA;
 attribute vec3 positionB;
 attribute vec3 positionC;
 attribute vec3 positionD;
+attribute vec3 positionScatter;
 attribute float phase;
 
 varying float vAlpha;
@@ -26,14 +28,15 @@ void main() {
   vec3 fromPos = mix(positionA, mix(positionB, positionC, s2), s1);
   vec3 toPos = mix(positionB, mix(positionC, positionD, s2), s1);
   vec3 morphed = mix(fromPos, toPos, segFract);
+  vec3 assembled = mix(positionScatter, morphed, uAssembly);
 
   float angle = uTime * 0.05;
   float c = cos(angle);
   float s = sin(angle);
   vec3 rotated = vec3(
-    morphed.x * c - morphed.z * s,
-    morphed.y,
-    morphed.x * s + morphed.z * c
+    assembled.x * c - assembled.z * s,
+    assembled.y,
+    assembled.x * s + assembled.z * c
   );
 
   vec4 mvPosition = modelViewMatrix * vec4(rotated, 1.0);

@@ -1,5 +1,6 @@
 import './styles/main.css';
 import * as THREE from 'three';
+import gsap from 'gsap';
 import { getDeviceTier } from './scene/deviceTier.js';
 import { ParticleField } from './scene/ParticleField.js';
 import { createRenderer } from './scene/renderer.js';
@@ -28,7 +29,7 @@ const navbar = createNavbar({ particleCount: tier.particleCount });
 if (reducedMotion) {
   document.querySelector('.stats-hud').style.display = 'none';
 }
-const heroTitle = createHeroTitle();
+const heroTitle = createHeroTitle({ animate: !reducedMotion });
 
 let scrollProgress = 0;
 if (!reducedMotion) {
@@ -61,10 +62,18 @@ function animate() {
 }
 
 if (reducedMotion) {
+  particleField.setAssembly(1);
   requestAnimationFrame(() => composer.render());
   window.addEventListener('resize', debounce(() => composer.render(), 200));
 } else {
   requestAnimationFrame(animate);
+  const assembly = { value: 0 };
+  gsap.to(assembly, {
+    value: 1,
+    duration: 1.8,
+    ease: 'power3.out',
+    onUpdate: () => particleField.setAssembly(assembly.value),
+  });
 }
 
 if (import.meta.hot) {

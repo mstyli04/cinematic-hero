@@ -37,6 +37,10 @@ html, body {
   letter-spacing: -0.02em;
 }
 
+.hero-title h1 span {
+  display: inline-block;
+}
+
 .navbar {
   position: fixed;
   top: 0; left: 0; width: 100%;

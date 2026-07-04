@@ -20,6 +20,7 @@ export class ParticleField {
     const positionB = cubeOutline(count);
     const positionC = initials(count);
     const positionD = starfield(count);
+    const positionScatter = starfield(count, { spread: 14 });
 
     const phase = new Float32Array(count);
     for (let i = 0; i < count; i += 1) phase[i] = Math.random() * Math.PI * 2;
@@ -32,6 +33,7 @@ export class ParticleField {
     this.geometry.setAttribute('positionB', new THREE.BufferAttribute(positionB, 3));
     this.geometry.setAttribute('positionC', new THREE.BufferAttribute(positionC, 3));
     this.geometry.setAttribute('positionD', new THREE.BufferAttribute(positionD, 3));
+    this.geometry.setAttribute('positionScatter', new THREE.BufferAttribute(positionScatter, 3));
     this.geometry.setAttribute('phase', new THREE.BufferAttribute(phase, 1));
 
     this.material = new THREE.ShaderMaterial({
@@ -39,6 +41,7 @@ export class ParticleField {
         uProgress: { value: 0 },
         uTime: { value: 0 },
         uColor: { value: new THREE.Color(colorHex) },
+        uAssembly: { value: 0 },
       },
       vertexShader,
       fragmentShader,
@@ -55,6 +58,10 @@ export class ParticleField {
     const t = Math.min(Math.max(progress, 0), 2.9999);
     const i = Math.floor(t);
     this.material.uniforms.uColor.value.copy(PALETTE[i]).lerp(PALETTE[i + 1], t - i);
+  }
+
+  setAssembly(value) {
+    this.material.uniforms.uAssembly.value = value;
   }
 
   getTintCss(strength = 0.22) {
