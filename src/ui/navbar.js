@@ -3,17 +3,9 @@ export function computeFps(deltaSeconds) {
   return Math.round(1 / deltaSeconds);
 }
 
-export function createNavbar({ particleCount }) {
-  const nav = document.createElement('nav');
-  nav.className = 'navbar';
-  nav.innerHTML = `
-    <span class="navbar__logo">STYLI</span>
-    <div class="navbar__links">
-      <a href="#content">WORK</a>
-      <a href="#contact">CONTACT</a>
-    </div>
-  `;
-
+// The nav itself is static HTML; only the decorative stats HUD is
+// JS-created, since it is meaningless without a running render loop.
+export function createStatsHud({ particleCount }) {
   const hud = document.createElement('div');
   hud.className = 'stats-hud';
   hud.innerHTML = `
@@ -21,8 +13,7 @@ export function createNavbar({ particleCount }) {
     <span data-stat="particles">PTS ${particleCount}</span>
     <span data-stat="scroll">SCROLL 0%</span>
   `;
-
-  document.body.append(nav, hud);
+  document.body.appendChild(hud);
 
   const fpsEl = hud.querySelector('[data-stat="fps"]');
   const scrollEl = hud.querySelector('[data-stat="scroll"]');

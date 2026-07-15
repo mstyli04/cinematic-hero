@@ -3,85 +3,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const PROJECTS = [
-  {
-    title: 'PAPER ALPHA',
-    href: 'https://github.com/mstyli04/paper-alpha',
-    live: 'https://paper-alpha-navy.vercel.app/',
-    tags: ['Next.js', 'TypeScript', 'Prisma'],
-    desc: 'An educational platform for learning how financial markets and investing work — practice trading stocks and crypto with $100,000 in virtual cash, live market data, and guided lessons, so you can build real investing skills before risking real money.',
-  },
-  {
-    title: 'MACRO MONITOR',
-    href: 'https://github.com/mstyli04/macro-monitor',
-    tags: ['Python', 'Next.js', 'FRED API'],
-    desc: 'A live US macro dashboard with a recession-probability nowcast in the tradition of Estrella & Mishkin (1998) — a probit model with walk-forward out-of-sample validation, refreshed daily from FRED.',
-  },
-  {
-    title: 'GAME THEORY SIMULATOR',
-    href: 'https://github.com/mstyli04/game-theory-simulator',
-    tags: ['Vanilla JS', 'Zero dependencies'],
-    desc: 'An interactive workbook for two-player normal-form games. Build a payoff matrix and watch it get solved live: iterated elimination of dominated strategies, all Nash equilibria, best-response curves, and the Pareto frontier.',
-  },
-  {
-    title: 'FX OPTIONS DASHBOARD',
-    href: 'https://github.com/mstyli04/fx-options-dashboard',
-    tags: ['Flask', 'NumPy', 'SciPy'],
-    desc: 'A pricing and risk dashboard for European FX options using Garman–Kohlhagen, with 3D Greek surfaces, Monte Carlo simulation, implied-volatility solving, and a backtested delta-hedging strategy on real GBPUSD history.',
-  },
-  {
-    title: 'JOB TRACKER',
-    href: 'https://github.com/mstyli04/job-tracker',
-    tags: ['Flask', 'SQLite'],
-    desc: 'A lightweight Flask app for tracking job applications end-to-end, from Applied through Offer or Rejected, built to stay organized during a job search.',
-  },
-];
-
-const SKILLS = [
-  'Python', 'pandas', 'NumPy/SciPy', 'statsmodels', 'R', 'MATLAB', 'Excel',
-  'SQL', 'JavaScript/TypeScript', 'Next.js/React', 'Flask', 'Three.js',
-  'Claude Code',
-];
-
-function projectRow({ title, href, tags, desc, live }, index) {
-  const num = String(index + 1).padStart(2, '0');
-  const liveLink = live
-    ? `<a class="project-row__live" href="${live}" target="_blank" rel="noopener noreferrer">LIVE ↗</a>`
-    : '';
-  return `
-    <li class="project-row">
-      <div class="project-row__head">
-        <a class="project-row__link" href="${href}" target="_blank" rel="noopener noreferrer">
-          <span class="project-row__num">${num}</span>
-          <span class="project-row__title">${title}</span>
-        </a>
-        ${liveLink}
-      </div>
-      <ul class="pill-list project-row__tags">${tags.map((t) => `<li>${t}</li>`).join('')}</ul>
-      <p class="project-row__desc">${desc}</p>
-    </li>
-  `;
-}
-
-export function createContentSection({ animate = true } = {}) {
-  const section = document.createElement('section');
-  section.id = 'content';
-  section.className = 'content-section';
-  section.innerHTML = `
-    <h2 class="content-section__heading">MICHAEL STYLIANOU</h2>
-    <ul class="content-section__list">
-      <li><a href="https://paper-alpha-navy.vercel.app/" target="_blank" rel="noopener noreferrer">WEBSITES</a></li>
-      <li>GAMES</li>
-    </ul>
-    <h3 class="about__heading">ABOUT</h3>
-    <p class="about__bio">Mathematics & Economics graduate from the University of Liverpool, building quantitative tools for real markets — from options pricing and delta-hedging backtests to a live recession nowcast. Interested in data-driven finance and AI; everything below was designed, built, and shipped by me.</p>
-    <ul class="pill-list about__skills">${SKILLS.map((s) => `<li>${s}</li>`).join('')}</ul>
-    <a class="about__cv-button" href="/cv.pdf" download="Michael_Stylianou_CV.pdf">DOWNLOAD CV</a>
-    <h3 class="projects__heading">PROJECTS</h3>
-    <ul class="projects__list">${PROJECTS.map(projectRow).join('')}</ul>
-  `;
-  document.body.appendChild(section);
-
+// All content markup lives in index.html so it is present in the initial
+// HTML response; this module only wires up the scroll-reveal animations.
+export function initContentAnimations({ animate = true } = {}) {
+  const section = document.getElementById('content');
   if (!animate) return section;
 
   // scrub: 1 (vs. scrub: true) adds ~1s of catch-up smoothing so the reveal

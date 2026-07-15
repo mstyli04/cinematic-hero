@@ -1,20 +1,27 @@
 import gsap from 'gsap';
 
-const NAME = 'MICHAEL STYLIANOU';
-
-export function createHeroTitle({ animate = true } = {}) {
-  const el = document.createElement('div');
-  el.className = 'hero-title';
-  const h1 = document.createElement('h1');
-  h1.setAttribute('aria-label', NAME);
-  h1.innerHTML = [...NAME]
-    .map((ch) => `<span aria-hidden="true">${ch === ' ' ? '&nbsp;' : ch}</span>`)
-    .join('');
-  el.appendChild(h1);
-  document.getElementById('hero').appendChild(el);
+// The h1 ships as plain text in index.html so the name is in the initial
+// HTML response; this splits it into per-letter spans only when animating.
+export function enhanceHeroTitle({ animate = true } = {}) {
+  const el = document.querySelector('.hero-title');
+  const h1 = el.querySelector('h1');
+  const tagline = el.querySelector('.hero-title__tagline');
 
   if (animate) {
-    gsap.from(h1.children, {
+    const name = h1.textContent;
+    h1.setAttribute('aria-label', name);
+    // Letters are grouped per word so line breaks only happen between
+    // words — free-floating letter spans wrap mid-word on narrow screens.
+    h1.innerHTML = name
+      .split(' ')
+      .map(
+        (word) =>
+          `<span class="hero-title__word" aria-hidden="true">${[...word]
+            .map((ch) => `<span>${ch}</span>`)
+            .join('')}</span>`,
+      )
+      .join(' ');
+    gsap.from(h1.querySelectorAll('.hero-title__word > span'), {
       autoAlpha: 0,
       y: 24,
       duration: 0.8,
@@ -22,6 +29,9 @@ export function createHeroTitle({ animate = true } = {}) {
       ease: 'power2.out',
       delay: 0.4,
     });
+    if (tagline) {
+      gsap.from(tagline, { autoAlpha: 0, y: 16, duration: 0.8, ease: 'power2.out', delay: 1.2 });
+    }
   }
 
   return {

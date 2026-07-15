@@ -41,6 +41,19 @@ html, body {
   display: inline-block;
 }
 
+.hero-title__word {
+  white-space: nowrap;
+}
+
+.hero-title__tagline {
+  max-width: 560px;
+  margin-top: 20px;
+  font-size: 15px;
+  line-height: 1.6;
+  letter-spacing: 0.04em;
+  color: rgba(232, 241, 255, 0.65);
+}
+
 .skip-link {
   position: fixed;
   top: -100px;
@@ -195,6 +208,7 @@ html, body {
   display: flex;
   align-items: baseline;
   gap: 16px;
+  flex-wrap: wrap;
 }
 
 .project-row__live {
@@ -392,7 +406,8 @@ html, body {
 @media (max-width: 640px) {
   .navbar { padding: 16px 20px; }
   .hero-title h1 { font-size: 34px; }
-  .navbar__links a { margin-left: 20px; }
+  .hero-title__tagline { font-size: 13px; }
+  .navbar__links a { margin-left: 14px; }
   .stats-hud { display: none; }
   .content-section { padding: 0 20px; }
   .project-row__link { flex-direction: column; gap: 4px; }
