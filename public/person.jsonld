@@ -1,0 +1,12 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Michael Stylianou",
+  "url": "https://michaelstylianou.vercel.app/",
+  "email": "mailto:michael.stylianou7@gmail.com",
+  "alumniOf": "University of Liverpool",
+  "sameAs": [
+    "https://github.com/mstyli04",
+    "https://linkedin.com/in/michael-stylianou-185055302"
+  ]
+}
