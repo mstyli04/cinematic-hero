@@ -109,7 +109,7 @@
           <a class="project-row__live" href="https://raw.githubusercontent.com/mstyli04/neural-option-pricer/master/docs/observatory-demo.gif" target="_blank" rel="noopener noreferrer">DEMO ↗</a>
           <a class="project-row__live" href="https://github.com/mstyli04/neural-option-pricer" target="_blank" rel="noopener noreferrer">GITHUB ↗</a>
         </div>
-        <p class="project-row__desc">Most neural networks learn from data. This one never sees a single option price — it learns by being penalised whenever it disagrees with the Black–Scholes equation, and you can watch it happen: a live dashboard shows the price surface bending into shape as the network trains. Once it can match the textbook answer for a European call, it moves on to the American put — a contract no formula can price — and works out the early-exercise boundary on its own.</p>
+        <p class="project-row__desc">A neural network that prices options by learning the Black–Scholes equation directly, with no market data involved. Training streams to a live dashboard where you can watch the price surface take shape and compare it against the exact solution in real time. It also handles the American put, which has no exact formula — the network works out the early-exercise boundary itself, checked against a traditional finite-difference solver.</p>
         <ul class="pill-list project-row__tags"><li>PyTorch</li><li>FastAPI</li><li>three.js</li></ul>
       </li>
 
