@@ -32,13 +32,17 @@ if (!reducedMotion) {
 
 // Three.js and the whole WebGL scene are code-split behind a dynamic import
 // so the static text paints and reads before (or without) them; the scene
-// is decorative, so a failed load leaves a fully usable page.
-import('./scene/sceneApp.js')
-  .then(({ initScene }) => {
-    sceneHooks = initScene({
-      canvas: document.getElementById('scene'),
-      reducedMotion,
-      getScrollProgress: () => scrollProgress,
-    });
-  })
-  .catch(() => {});
+// is decorative, so a failed load leaves a fully usable page. Reduced-motion
+// users only ever get a single static frame from this scene, so skip the
+// ~130KB gzipped chunk entirely for them and let the .scene-tint CSS
+// gradient (with its default color) stand in for it.
+if (!reducedMotion) {
+  import('./scene/sceneApp.js')
+    .then(({ initScene }) => {
+      sceneHooks = initScene({
+        canvas: document.getElementById('scene'),
+        getScrollProgress: () => scrollProgress,
+      });
+    })
+    .catch(() => {});
+}

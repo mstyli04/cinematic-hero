@@ -5,7 +5,6 @@ import gsap from 'gsap';
 export function enhanceHeroTitle({ animate = true } = {}) {
   const el = document.querySelector('.hero-title');
   const h1 = el.querySelector('h1');
-  const tagline = el.querySelector('.hero-title__tagline');
 
   if (animate) {
     const name = h1.textContent;
@@ -29,9 +28,6 @@ export function enhanceHeroTitle({ animate = true } = {}) {
       ease: 'power2.out',
       delay: 0.4,
     });
-    if (tagline) {
-      gsap.from(tagline, { autoAlpha: 0, y: 16, duration: 0.8, ease: 'power2.out', delay: 1.2 });
-    }
   }
 
   return {
