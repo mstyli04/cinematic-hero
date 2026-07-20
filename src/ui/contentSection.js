@@ -9,19 +9,6 @@ export function initContentAnimations({ animate = true } = {}) {
   const section = document.getElementById('content');
   if (!animate) return section;
 
-  // scrub: 1 (vs. scrub: true) adds ~1s of catch-up smoothing so the reveal
-  // eases toward the scroll position instead of snapping rigidly to it.
-  gsap.fromTo(
-    section.querySelector('.content-section__heading'),
-    { autoAlpha: 0, y: 60 },
-    {
-      autoAlpha: 1,
-      y: 0,
-      ease: 'power2.out',
-      scrollTrigger: { trigger: section, start: 'top 85%', end: 'top 40%', scrub: 1 },
-    },
-  );
-
   gsap.from(
     section.querySelectorAll('.about__heading, .about__bio, .about__skills, .about__cv-button'),
     {
