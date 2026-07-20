@@ -74,6 +74,13 @@ html, body {
   font-size: 13px;
   letter-spacing: 0.15em;
   text-transform: uppercase;
+  /* Was fully transparent, so scrolling body copy read directly through
+     it once the sections below stopped being opaque. A glass strip keeps
+     it legible without hiding the particle field behind it. */
+  background: rgb(5 6 10 / 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(232, 241, 255, 0.1);
 }
 
 .navbar__links a {
