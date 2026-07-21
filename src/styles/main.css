@@ -85,6 +85,7 @@ html, body {
 }
 
 .navbar__links a {
+  font-family: var(--font-mono);
   color: #e8f1ff;
   text-decoration: none;
   margin-left: 32px;
@@ -97,7 +98,7 @@ html, body {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  font-family: 'SF Mono', 'Consolas', monospace;
+  font-family: var(--font-mono);
   font-size: 11px;
   color: #6f93b8;
   text-align: right;
@@ -188,7 +189,7 @@ html, body {
 }
 
 .project-row__live {
-  font-family: 'SF Mono', 'Consolas', monospace;
+  font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.08em;
   color: #bfe6ff;
@@ -206,7 +207,7 @@ html, body {
 }
 
 .project-row__num {
-  font-family: 'SF Mono', 'Consolas', monospace;
+  font-family: var(--font-mono);
   font-size: 13px;
   color: #6f93b8;
 }
@@ -259,7 +260,7 @@ html, body {
 }
 
 .pill-list li {
-  font-family: 'SF Mono', 'Consolas', monospace;
+  font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.08em;
   color: #6f93b8;
@@ -290,6 +291,7 @@ html, body {
 :root {
   --scene-tint: rgb(42 51 56);
   --font-display: 'Bricolage Grotesque Variable', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', 'SF Mono', 'Consolas', monospace;
 }
 
 /* Canvas is opaque, so the tint sits above it and screens onto the scene. */
