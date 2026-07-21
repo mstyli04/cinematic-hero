@@ -1,3 +1,5 @@
+import '@fontsource-variable/bricolage-grotesque';
+import '@fontsource-variable/jetbrains-mono';
 import './styles/main.css';
 import { enhanceHeroTitle } from './ui/heroTitle.js';
 import { initContentAnimations } from './ui/contentSection.js';
