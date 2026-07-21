@@ -32,6 +32,7 @@ html, body {
    without max-width the h1 overflows instead of wrapping on phones. */
 .hero-title h1 {
   max-width: 100%;
+  font-family: var(--font-display);
   font-size: clamp(40px, 8vw, 120px);
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -212,6 +213,7 @@ html, body {
 
 .project-row__title {
   position: relative;
+  font-family: var(--font-display);
   font-size: clamp(24px, 4vw, 44px);
   font-weight: 700;
   letter-spacing: 0.02em;
@@ -285,7 +287,10 @@ html, body {
   color: rgba(232, 241, 255, 0.85);
 }
 
-:root { --scene-tint: rgb(42 51 56); }
+:root {
+  --scene-tint: rgb(42 51 56);
+  --font-display: 'Bricolage Grotesque Variable', 'Helvetica Neue', Arial, sans-serif;
+}
 
 /* Canvas is opaque, so the tint sits above it and screens onto the scene. */
 .scene-tint {
@@ -337,6 +342,7 @@ html, body {
 }
 
 .footer__heading {
+  font-family: var(--font-display);
   font-size: clamp(32px, 6vw, 72px);
   font-weight: 700;
   letter-spacing: -0.02em;
