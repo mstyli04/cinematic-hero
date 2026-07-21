@@ -204,7 +204,7 @@ html, body {
 
 .project-row__live:hover,
 .project-row__live:focus-visible {
-  background: rgba(191, 230, 255, 0.12);
+  background: rgba(127, 169, 204, 0.14);
 }
 
 .icon-arrow {
@@ -305,6 +305,7 @@ html, body {
   --scene-tint: rgb(42 51 56);
   --font-display: 'Bricolage Grotesque Variable', 'Helvetica Neue', Arial, sans-serif;
   --font-mono: 'JetBrains Mono Variable', 'SF Mono', 'Consolas', monospace;
+  --accent: #bfe6ff;
   --accent-dim: #7fa9cc;
 }
 
@@ -393,7 +394,7 @@ html, body {
 
 .footer__linkedin:hover,
 .footer__linkedin:focus-visible {
-  color: #bfe6ff;
+  color: var(--accent-dim);
 }
 
 .footer__copyright {
